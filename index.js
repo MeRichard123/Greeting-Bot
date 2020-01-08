@@ -41,7 +41,7 @@ bot.on("ready", () => {
 bot.on("message", message => {
   if (message.isMemberMentioned(bot.user)) {
     let choice = greetings[Math.floor(Math.random() * greetings.length)];
-    message.channel.reply(choice);
+    message.reply(choice);
   }
 });
 
