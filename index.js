@@ -67,7 +67,7 @@ bot.on("message", message => {
   }
   // if (command === "wipe") {
   //   if (message.member.roles.find(r => r.name === "Admins")) {
-  //     // message.channel.bulkDelete(args[1]);
+  //      message.channel.bulkDelete(args[1]);
   //     message.channel.send(args[1]);
   //   }
   // }
