@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const bot = new Discord.Client();
 
-const token = process.env.token;
+const token = "NjY0NTc5NTA1NTI3OTgwMDMy.XhgpKg.hc3f_Fy8fHqCJOW5eBpAe3WG980";
 const prefix = "?";
 
 const greetings = [
@@ -54,29 +54,23 @@ bot.on("message", message => {
     .slice(prefix.length)
     .trim()
     .split(/ +/g);
-  const command = args.shift().toLocaleLowerCase();
-  const channel = member.guild.channel.find(
-    channel => channel.name === "ash-ketchum"
-  );
-  if (!channel) return;
+  const command = args.shift().toLowerCase();
+  // const channel = member.guild.channel.find(
+  //   channel => channel.name === "ash-ketchum"
+  // );
+  // if (!channel) return;
   if (!message.content.startsWith(prefix)) return;
+
   if (command === "chat") {
     let choice = greetings[Math.floor(Math.random() * greetings.length)];
     message.reply(choice);
   }
-  if (command === "wipe") {
-    if (!args[1]) {
-      return message.reply("Please Specify an Argument");
-    } else {
-      if (
-        message.member.roles.find(
-          r => r.name === "Managers" || r.name === "Admin"
-        )
-      ) {
-        message.channel.bulkDelete(args[1]);
-      }
-    }
-  }
+  // if (command === "wipe") {
+  //   if (message.member.roles.find(r => r.name === "Admins")) {
+  //     // message.channel.bulkDelete(args[1]);
+  //     message.channel.send(args[1]);
+  //   }
+  // }
 });
 
 bot.login(token);
