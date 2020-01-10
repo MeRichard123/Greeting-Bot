@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 const bot = new Discord.Client();
 
 const token = process.env.token;
+const prefix = "?";
 
 const greetings = [
   "Hello, sunshine!",
@@ -38,10 +39,43 @@ const greetings = [
 bot.on("ready", () => {
   console.log("this bot is online");
 });
+bot.on("guildMemberAdd", member => {
+  const channel = member.guild.channels.find(
+    channel => channel.name === "welcome-to-the-server"
+  );
+  if (!channel) return;
+  channel.send(
+    `Welcome to the Pokecord Server ${member}! Head over to hellos-and-intros to get yourself started!`
+  );
+});
+
 bot.on("message", message => {
-  if (message.isMemberMentioned(bot.user)) {
+  const args = message.content
+    .slice(prefix.length)
+    .trim()
+    .split(/ +/g);
+  const command = args.shift().toLocaleLowerCase();
+  const channel = member.guild.channel.find(
+    channel => channel.name === "ash-ketchum"
+  );
+  if (!channel) return;
+  if (!message.content.startsWith(prefix)) return;
+  if (command === "chat") {
     let choice = greetings[Math.floor(Math.random() * greetings.length)];
     message.reply(choice);
+  }
+  if (command === "wipe") {
+    if (!args[1]) {
+      return message.reply("Please Specify an Argument");
+    } else {
+      if (
+        message.member.roles.find(
+          r => r.name === "Managers" || r.name === "Admin"
+        )
+      ) {
+        message.channel.bulkDelete(args[1]);
+      }
+    }
   }
 });
 
