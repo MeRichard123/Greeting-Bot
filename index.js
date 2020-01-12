@@ -40,10 +40,6 @@ bot.on("ready", () => {
   console.log("this bot is online");
 });
 bot.on("guildMemberAdd", member => {
-  const channel = member.guild.channels.find(
-    channel => channel.name === "welcome-to-the-server" // #664562640307093508
-  );
-  if (!channel) return;
   message.channel.send(
     `Welcome to the Pokecord Server ${member}! Head over to hellos-and-intros to get yourself started!`
   );
